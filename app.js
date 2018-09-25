@@ -5,24 +5,25 @@ const app = express();
 
 const port = 5000;
 
+// handlebars middleware
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 
-app.use((req, res, next) => {
-  console.log(Date.now());
-  next();
-});
-
+// routes
 app.get('/', (req, res) => {
-  res.send('INDEX');
+  const title = 'Welcome!!!'
+  res.render('index', {
+    title
+  });
 });
 
 app.get('/about', (req, res) => {
-  res.send('ABOUT');
+  res.render('about');
 });
 
+// start server
 app.listen(port, () => {
   console.log(`Server started on ${port} ...`);
 });
