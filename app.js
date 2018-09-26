@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 
 const app = express();
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // load routes
 const ideas = require('./routes/ideas');
@@ -20,8 +20,13 @@ const users = require('./routes/users');
 // passport config
 require('./congif/passport')(passport);
 
+let URI = 'mongodb://localhost/vidjot-dev';
+if (process.env.NODE_ENV === 'production') {
+  URI = process.env.MONDODB_URI
+}
+
 // connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev', {
+mongoose.connect(URI, {
     useNewUrlParser: true
   })
   .then(() => {
