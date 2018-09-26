@@ -22,7 +22,7 @@ require('./congif/passport')(passport);
 
 let URI = 'mongodb://localhost/vidjot-dev';
 if (process.env.NODE_ENV === 'production') {
-  URI = process.env.MONDODB_URI
+  URI = process.env.MONGODB_URI
 }
 
 // connect to mongoose
